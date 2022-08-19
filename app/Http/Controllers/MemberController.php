@@ -92,7 +92,16 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $member = Member::find($id);
+        $member->name = $request->name;
+        $member->address = $request->address;
+        $result = $member->update();
+        if ($result) {
+            return 'one data updated';
+        } else {
+            return 'error found';
+        }
+
     }
 
     /**
@@ -103,6 +112,13 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = Member::find($id);
+        $result = $member->delete();
+        if ($result) {
+            return 'one data deleted';
+        } else {
+            return 'errore found';
+        }
+
     }
 }
